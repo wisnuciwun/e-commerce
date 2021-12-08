@@ -5,9 +5,9 @@
   src: url('../src/public/fonts/hankenround-Regular.ttf');
 }
 
- *{
-   font-family: 'hanken';
- }
+* {
+  font-family: 'hanken';
+}
 
 body {
   margin: 0;
@@ -31,28 +31,62 @@ code {
   width: 100%;
 }
 
-.category{
+.category {
   height: 100px;
   width: 100px;
   object-fit: cover;
 }
 
-.pointer{
+.pointer {
   cursor: pointer;
 }
 
-.round{
+.round {
   border-radius: 100%;
   background-color: bisque;
   box-shadow: 5px 6px 10px #848484;
 }
 
-.category-items{
+.category-items {
   word-wrap: break-word;
   width: 100px;
   margin-right: 15px;
 }
 
-.default-color{
-  color:brown;
+.default-color {
+  color: brown;
+}
+
+.stocks {
+  height: 300px;
+  width: 300px;
+  object-fit: cover;
+  z-index: -1;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+
+}
+
+.border-stock {
+  border-radius: 20px;
+  z-index: 9;
+  margin-right: 10px;
+}
+
+.coba{
+  word-wrap: break-word !important;
+}
+
+.fade-in {
+  animation: fadeIn ease-in 1s;
+  animation-iteration-count: 1;
+}
+
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
 }

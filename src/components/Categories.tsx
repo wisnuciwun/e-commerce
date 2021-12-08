@@ -1,21 +1,21 @@
 import React from 'react'
 
-interface Imaging {
-    imageobject: [
-        element
+interface Category {
+    data: [
+        CategoryElement
     ],
 }
 
-interface element {
+interface CategoryElement {
     icon: string,
     category_name: string
 }
 
-function Category(props: Imaging) {
+function Categories(props: Category) {
     return (
-        <div className="d-flex justify-content-between mt-5 p-3 overflow-auto">
+        <div className="d-flex justify-content-between mt-2 overflow-auto p-5">
             {
-                props.imageobject.map((value, id) => {
+                props.data.map((value, id) => {
                     return (
                         <div className="pointer category-items" key={id}>
                             <div className='mb-3 round'>
@@ -30,4 +30,4 @@ function Category(props: Imaging) {
     )
 }
 
-export default Category
+export default Categories
