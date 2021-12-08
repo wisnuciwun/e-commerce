@@ -1,0 +1,58 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css");
+
+@font-face {
+  font-family: 'hanken';
+  src: url('../src/public/fonts/hankenround-Regular.ttf');
+}
+
+ *{
+   font-family: 'hanken';
+ }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.header {
+  float: top;
+  display: fixed !important;
+  top: 0 !important;
+  z-index: 99;
+  width: 100%;
+}
+
+.category{
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.round{
+  border-radius: 100%;
+  background-color: bisque;
+  box-shadow: 5px 6px 10px #848484;
+}
+
+.category-items{
+  word-wrap: break-word;
+  width: 100px;
+  margin-right: 15px;
+}
+
+.default-color{
+  color:brown;
+}
