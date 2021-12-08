@@ -13,7 +13,7 @@ interface CategoryElement {
 
 function Categories(props: Category) {
     return (
-        <div className="d-flex justify-content-between mt-2 overflow-auto p-5">
+        <div className="d-flex justify-content-between overflow-auto p-3">
             {
                 props.data.map((value, id) => {
                     return (

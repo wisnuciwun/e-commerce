@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { MDBCarousel, MDBCarouselInner, MDBCarouselItem, MDBView } from 'mdbreact'
 import Axios from '../config/axios'
 import Categories from '../components/Categories'
+import Banners from '../components/Banners'
 
 interface State {
     categories: [CategoryElement],
-    products: [ProductElement]
+    products: [ProductElement],
+    banners: [BannerElement]
 }
 
 interface CategoryElement {
@@ -22,13 +23,18 @@ interface ProductElement {
     normal_price: number
 }
 
-class Home extends Component<any, State> {// ganti props bikin interface kal mau nganu prop
+interface BannerElement {
+    url_mobile: string
+}
+
+class Home extends Component<any, State> {
     constructor(props: any) {
         super(props)
 
         this.state = {
             categories: [{ category_name: '', icon: '' }],
-            products: [{ image_uri: '', discount_percentage: 0, supplier_name: '', location: '', product_name: '', normal_price: 0 }]
+            products: [{ image_uri: '', discount_percentage: 0, supplier_name: '', location: '', product_name: '', normal_price: 0 }],
+            banners: [{ url_mobile: '' }]
         }
     }
 
@@ -50,7 +56,7 @@ class Home extends Component<any, State> {// ganti props bikin interface kal mau
             await Axios.get(`${process.env.REACT_APP_API_URL}api-web/v2/utility/home/banner-web`)
                 .then(res => {
                     this.setState({
-                        products: res.data.data
+                        banners: res.data.data
                     })
                 })
         } catch (error) {
@@ -74,6 +80,7 @@ class Home extends Component<any, State> {// ganti props bikin interface kal mau
     componentDidMount = () => {
         this.getDataCategory()
         this.getDataProducts()
+        this.getDataBanner()
     }
 
     UNSAFE_componentWillReceiveProps = () => {
@@ -81,48 +88,13 @@ class Home extends Component<any, State> {// ganti props bikin interface kal mau
     }
 
     render() {
+        let { categories, products, banners } = this.state
         const Products = React.lazy(() => import('../components/Products'));
         return (
-            <div>
-                <Categories data={this.state.categories} />
-                <Products data={this.state.products} />
-                {/* <h1>home</h1>
-                <h1>home</h1>
-                <h1>home</h1>
-                <h1>home</h1>
-                <h1>home</h1>
-                <h1>home</h1>
-                <h1>home</h1>
-
-                <h1>home</h1>
-                <h1>home</h1>
-                <h1>home</h1>
-                <h1>home</h1>
-                <h1>home</h1>
-                <h1>home</h1>
-                <h1>home</h1>
-                <h1>home</h1>
-
-                <h1>home</h1>
-                <h1>home</h1>
-                <h1>home</h1>
-                <h1>home</h1>
-                <h1>home</h1>
-                <h1>home</h1>
-                <h1>home</h1>
-                <h1>home</h1>
-
-                <h1>home</h1>
-                <h1>home</h1>
-                <h1>home</h1>
-                <h1>home</h1>
-                <h1>home</h1>
-                <h1>home</h1>
-                <h1>home</h1>
-                <h1>home</h1>
-
-                <h1>home</h1> */}
-
+            <div style={{ marginTop: '90px' }}>
+                <Banners data={banners} />
+                <Categories data={categories} />
+                <Products data={products} />
             </div>
         )
     }
