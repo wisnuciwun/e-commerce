@@ -5,6 +5,7 @@ import Banners from '../components/Banners'
 import Products from '../components/Products'
 import { connect } from 'react-redux'
 import { onChangeCategory } from '../config/action/rootAction'
+import { CategoryElement } from '../constants/Constants'
 
 interface State {
     categories: [CategoryElement],
@@ -12,11 +13,6 @@ interface State {
     banners: [BannerElement],
     filtered: any,
     searchByCategory: string
-}
-
-interface CategoryElement {
-    icon: string,
-    category_name: string
 }
 
 interface BannerElement {
@@ -88,7 +84,7 @@ class Home extends Component<any, State> {
 
         switch (option) {
             case "category":
-                products = products.filter(val => val.mainmenu_name === this.state.searchByCategory)
+                products = products.filter(val => val.mainmenu_name.includes(this.state.searchByCategory))
                 this.setState({ filtered: products }, () => dispatch(onChangeCategory(this.state.searchByCategory)))
                 break;
             case "keyword":
@@ -125,7 +121,7 @@ class Home extends Component<any, State> {
             <div style={{ marginTop: '90px' }}>
                 <Banners data={banners} />
                 <Categories choosen={searchByCategory} data={categories} onClick={this.onClickCategory} />
-                <Products data={filtered} />
+                <Products searchCategory={this.props.searchByCategory} searchKeyword={this.props.searchKeyword} data={filtered} onClickBack={this.onClickCategory} />
             </div>
         )
     }

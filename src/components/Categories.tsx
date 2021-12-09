@@ -1,4 +1,5 @@
 import React from 'react'
+import { CategoryElement } from '../constants/Constants'
 
 interface Category {
     data: [
@@ -8,11 +9,6 @@ interface Category {
     choosen: string
 }
 
-interface CategoryElement {
-    icon: string,
-    category_name: string,
-}
-
 function Categories(props: Category) {
     return (
         <div className="d-flex justify-content-between overflow-auto p-2 mb-3">
@@ -20,7 +16,7 @@ function Categories(props: Category) {
                 props.data.map((value, id) => {
                     
                     let color: string
-                    props.choosen == value.category_name ? color = 'chartreuse' : color = 'bisque'
+                    props.choosen == value.category_name ? color = 'palegreen' : color = 'bisque'
 
                     return (
                         <div className="pointer category-items" onClick={() => props.onClick(value.category_name)} key={id}>
