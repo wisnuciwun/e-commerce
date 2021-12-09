@@ -1,46 +1,52 @@
-# Getting Started with Create React App
+# 🎉 E-Commerce
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aplikasi e-commerce dengan tampilan minimalist.
 
-## Available Scripts
+## ➕ Fitur
+> 1. Search Bar
+- Dapat mencari barang berdasarkan kata kunci dari barang yang sudah tertampil
+- Jika tidak menemukan barang, akan muncul tombol untuk kembali ke pencarian awal
+- Eksekusi pencarian dapat menggunakan tombol enter atau klik tombol di sebelah kanan
+- Jika kolom search kosong, kemudian di-enter atau klik maka akan kembali ke pencarian awal
+- floating header sehingga dapat mencari barang meskipun sedang scrolling
 
-In the project directory, you can run:
+> 2. Category Button
+- Dapat mencari barang berdasarkan kelompok barang dari yang sudah tertampil
+- Jika tidak menemukan barang akan muncul tombol kembali ke pencarian awal
+- Warna tombol berubah sesuai klik user
 
-### `npm start`
+> 3. Flexbox View Products
+- Tampilan produk dengan ukuran image sama dan object-fit cover
+- Pencarian baru akan bertambah kearah bawah secara otomatis dengan efek fade-in
+- Posisi deskripsi item akan rata dengan yang lain meskipun nama produk lain lebih panjang
+- Nama produk akan muncul ... apabila melebihi 26 karakter
+- Nama toko akan muncul ... apabila melebihi 8 karakter
+- Icon minimalis dari bootstrap
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+> 4. Floating Back Button
+- tombol kembali ke menu awal akan muncul ketika user scrolling dan akan sembunyi ketika ada di tampilan banner
+- tombol dapat digunakan untuk kembali ke atas secara otomatis apabila infinite scroll sudah terlalu jauh
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+> 5. Responsive View
+- Tampilan akan menyesuaikan di Smartphone sehingga tidak berantakan
+- Component fit to center sebaik mungkin
 
-### `npm test`
+> 6. Banner Carousel
+- Tampilan banner sliding otomatis dan dapat dipindah dengan tombol
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 👷 Spesifikasi Teknis
+- React JS 17.0.2
+- MDBootsrap react ui kit
+- Bootstrap icons
+- Typescript 4.5.2
+- Redux 7.2.6
+- Axios
+- React Number Format 4.8.0
+- Penerapan React Memo, Lifecycle (componentdidmount & componentdidupdate) dan PureComponent untuk menghindari render yang tidak perlu serta optimalisasi performa
+- Font custom (Hanken Round)
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 💩 Known bugs
+1. Floating button baru sembunyi dan baru muncul kembali di akhir pada halaman selanjutnya (tidak muncul terus). Serta muncul pada saat pencarian kosong
+2. Search belum dinamis karena keterbatasan api
+3. Indikator carousel tidak sesuai jumlah image
+4. React Lazy hanya bisa diterapkan di load awal web, karena ada bug saat implementasi infinite scroll. Sehingga tampilan loading per api belum maksimal

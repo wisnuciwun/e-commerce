@@ -116,12 +116,13 @@ class Home extends PureComponent<any, State> {
     }
 
     render() {
+        console.log("hm", this.props)
         let { categories, filtered, banners, searchByCategory } = this.state
         return (
             <div style={{ marginTop: '90px' }}>
                 <Banners data={banners} />
                 <Categories choosen={searchByCategory} data={categories} onClick={this.onClickCategory} />
-                <Products searchCategory={this.props.searchByCategory} searchKeyword={this.props.searchKeyword} data={filtered} onClickBack={this.onClickCategory} />
+                <Products searchCategory={this.props.searchCategory} searchKeyword={this.props.searchKeyword} data={filtered} onClickBack={this.onClickCategory} />
             </div>
         )
     }
