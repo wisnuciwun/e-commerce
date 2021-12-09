@@ -24,9 +24,9 @@ function Products(props: Product) {
                         <div key={id} className="border border-top mb-3 border-stock">
                             <img className="stocks" src={value.image_uri} />
                             <div className="text-start description">
-                                <h2>{value.product_name}</h2>
+                                <h4>{value.product_name}</h4>
                                 <span><b>{`Rp. ${value.normal_price}`}</b></span>
-                                <span>{value.discount_percentage == 0 ? '': `${value.discount_percentage} %`}</span><br/>
+                                <span>{value.discount_percentage == 0 ? '' : `${value.discount_percentage} %`}</span><br />
                                 <span>{value.supplier_name}</span><br />
                                 <span>{value.location}</span><br />
                             </div>

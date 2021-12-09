@@ -2,25 +2,17 @@ import React, { Component } from 'react'
 import Axios from '../config/axios'
 import Categories from '../components/Categories'
 import Banners from '../components/Banners'
+import Products from '../components/Products'
 
 interface State {
     categories: [CategoryElement],
-    products: [ProductElement],
+    products: any,
     banners: [BannerElement]
 }
 
 interface CategoryElement {
     icon: string,
     category_name: string
-}
-
-interface ProductElement {
-    image_uri: string,
-    discount_percentage: number,
-    supplier_name: string,
-    location: string,
-    product_name: string,
-    normal_price: number
 }
 
 interface BannerElement {
@@ -33,7 +25,7 @@ class Home extends Component<any, State> {
 
         this.state = {
             categories: [{ category_name: '', icon: '' }],
-            products: [{ image_uri: '', discount_percentage: 0, supplier_name: '', location: '', product_name: '', normal_price: 0 }],
+            products: [],
             banners: [{ url_mobile: '' }]
         }
     }
@@ -65,11 +57,12 @@ class Home extends Component<any, State> {
     }
 
     getDataProducts = async () => {
+        console.log("home", this.props)
         try {
             await Axios.get(`${process.env.REACT_APP_API_URL}api-web/v2/product-recommendation?page=${this.props.page}}`)
                 .then(res => {
                     this.setState({
-                        products: res.data.data
+                        products: [...this.state.products, ...res.data.data]
                     })
                 })
         } catch (error) {
@@ -89,7 +82,6 @@ class Home extends Component<any, State> {
 
     render() {
         let { categories, products, banners } = this.state
-        const Products = React.lazy(() => import('../components/Products'));
         return (
             <div style={{ marginTop: '90px' }}>
                 <Banners data={banners} />

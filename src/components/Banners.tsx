@@ -18,11 +18,11 @@ interface BannerElement {
 export default function Banners(props: Banner) {
 
   return (
-    <div className="d-flex justify-content-center mb-3">
+    <div style={{marginTop: '100px'}} className="d-flex justify-content-center mb-3 fade-in">
       <MDBCarousel showIndicators showControls fade>
         <MDBCarouselInner>
           <MDBCarouselItem className='active'>
-            <MDBCarouselElement src={props.data[0].url_mobile} alt='...' />
+            <MDBCarouselElement className="carousel" src={props.data[0].url_mobile} alt='...' />
             <MDBCarouselCaption>
             </MDBCarouselCaption>
           </MDBCarouselItem>

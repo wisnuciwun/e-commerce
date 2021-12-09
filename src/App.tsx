@@ -1,32 +1,49 @@
-import React, { Suspense, useState } from 'react';
+import React, { Component, Suspense } from 'react';
 import './App.css';
 import Home from './pages/Home';
 import DefaultHeader from './container/DefaultHeader';
 import Loading from './components/Loading';
+import { MDBBtn } from 'mdb-react-ui-kit';
 
-function App() {
-  const [page, setPage] = useState(1)
+interface State {
+  page: number
+}
 
+class App extends Component<any, State> {
+  constructor(props: any) {
+    super(props)
+    this.state = {
+      page: 1
+    }
+  }
 
-  const onScrollPage = (e: any) => {
+  onScrollPage = (e: any) => {
     const { scrollTop, clientHeight, scrollHeight } = e.currentTarget
+    let scrollStatus = Math.round(scrollHeight - scrollTop)
+    let screenHeight = clientHeight
 
-    if (scrollHeight - scrollTop <= clientHeight) {
-      setPage(page + 1)
+    if (scrollStatus <= screenHeight) {
       setTimeout(() => {
-        setPage(page + 1)  
+        this.setState({
+          page: this.state.page + 1
+        })
       }, 1000);
     }
   }
 
-  return (
-    <div onScroll={onScrollPage} style={{ height: '100vh', overflowY: 'auto' }} className="App">
-      <DefaultHeader />
-      <Suspense fallback={<Loading/>}>
-        <Home page={page} />
-      </Suspense>
-    </div>
-  );
+  onBackHome = () => {
+    window.document.getElementById("infinite")!.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  render() {
+    return (
+      <div id="infinite" onScroll={this.onScrollPage} className="App">
+        <DefaultHeader />
+        <Home page={this.state.page} />
+      </div>
+    )
+  }
+
 }
 
-export default App;
+export default App

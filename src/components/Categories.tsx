@@ -13,7 +13,7 @@ interface CategoryElement {
 
 function Categories(props: Category) {
     return (
-        <div className="d-flex justify-content-between overflow-auto p-3">
+        <div className="d-flex justify-content-between overflow-auto p-2 mb-3">
             {
                 props.data.map((value, id) => {
                     return (
@@ -21,7 +21,7 @@ function Categories(props: Category) {
                             <div className='mb-3 round'>
                                 <img className="category" src={value.icon} />
                             </div>
-                            <p className="default-color" >{value.category_name}</p>
+                            <p className="default-color" style={{fontSize: '10pt'}} >{value.category_name}</p>
                         </div>
                     )
                 })
