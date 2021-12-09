@@ -1,2 +1,4 @@
 export const PRODUCT_ITEMS = 'PRODUCT_ITEMS'
 export const PAGE = 'PAGE'
+export const SEARCH_KEYWORD = 'SEARCH_KEYWORD'
+export const SEARCH_CATEGORY = 'SEARCH_CATEGORY'

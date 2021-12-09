@@ -47,7 +47,6 @@ code {
 
 .round {
   border-radius: 100%;
-  background-color: bisque;
   box-shadow: 5px 6px 10px #848484;
 }
 
@@ -70,13 +69,13 @@ code {
   width: 150px;
   object-fit: cover;
   z-index: -1;
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 
 }
 
 .border-stock {
-  border-radius: 20px;
+  border-radius: 10px;
   z-index: 9;
   margin-right: 10px;
 }

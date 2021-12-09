@@ -29,7 +29,7 @@ export default function Banners(props: Banner) {
           {
             props.data.map((value, id) => {
               return (
-                <MDBCarouselItem itemId={id}>
+                <MDBCarouselItem key={id}>
                   <MDBCarouselElement className="carousel" src={value.url_mobile} alt='...' />
                   <MDBCarouselCaption>
                   </MDBCarouselCaption>

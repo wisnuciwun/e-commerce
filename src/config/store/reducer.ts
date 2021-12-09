@@ -1,8 +1,10 @@
-import { PAGE, PRODUCT_ITEMS } from "../action/actionType";
+import { PAGE, PRODUCT_ITEMS, SEARCH_CATEGORY, SEARCH_KEYWORD } from "../action/actionType";
 
 const initialState = {
     products: [],
-    page: 1
+    page: 1,
+    searchKeyword: '',
+    searchCategory: ''
 };
 
 const reducer = (state = initialState, action: any) => {
@@ -18,6 +20,16 @@ const reducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 page: action.data
+            }
+        case SEARCH_KEYWORD:
+            return {
+                ...state,
+                searchKeyword: action.data
+            }
+        case SEARCH_CATEGORY:
+            return {
+                ...state,
+                searchCategory: action.data
             }
     }
     return newState;

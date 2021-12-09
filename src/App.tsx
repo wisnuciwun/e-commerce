@@ -4,29 +4,23 @@ import Home from './pages/Home';
 import DefaultHeader from './container/DefaultHeader';
 import Loading from './components/Loading';
 import { MDBBtn } from 'mdb-react-ui-kit';
+import { connect } from 'react-redux';
+import { page } from './config/action/rootAction';
 
 interface State {
   page: number
 }
 
 class App extends Component<any, State> {
-  constructor(props: any) {
-    super(props)
-    this.state = {
-      page: 1
-    }
-  }
 
   onScrollPage = (e: any) => {
+    let { dispatch } = this.props
     const { scrollTop, clientHeight, scrollHeight } = e.currentTarget
     let scrollStatus = Math.round(scrollHeight - scrollTop)
-    let screenHeight = clientHeight
-
-    if (scrollStatus <= screenHeight) {
+    
+    if (scrollStatus-1<=window.innerHeight && this.props.searchKeyword === '' && this.props.searchCategory === '') {
       setTimeout(() => {
-        this.setState({
-          page: this.state.page + 1
-        })
+        dispatch(page(this.props.page+1))
       }, 1000);
     }
   }
@@ -39,11 +33,14 @@ class App extends Component<any, State> {
     return (
       <div id="infinite" onScroll={this.onScrollPage} className="App">
         <DefaultHeader />
-        <Home page={this.state.page} />
+        <Home />
       </div>
     )
   }
 
 }
+const mapStateToProps = (state: any) => {
+  return state
+}
 
-export default App
+export default connect(mapStateToProps)(App)

@@ -3,11 +3,15 @@ import Axios from '../config/axios'
 import Categories from '../components/Categories'
 import Banners from '../components/Banners'
 import Products from '../components/Products'
+import { connect } from 'react-redux'
+import { onChangeCategory } from '../config/action/rootAction'
 
 interface State {
     categories: [CategoryElement],
     products: any,
-    banners: [BannerElement]
+    banners: [BannerElement],
+    filtered: any,
+    searchByCategory: string
 }
 
 interface CategoryElement {
@@ -25,8 +29,10 @@ class Home extends Component<any, State> {
 
         this.state = {
             categories: [{ category_name: '', icon: '' }],
+            banners: [{ url_mobile: '' }],
             products: [],
-            banners: [{ url_mobile: '' }]
+            filtered: [],
+            searchByCategory: ''
         }
     }
 
@@ -57,16 +63,41 @@ class Home extends Component<any, State> {
     }
 
     getDataProducts = async () => {
-        console.log("home", this.props)
         try {
-            await Axios.get(`${process.env.REACT_APP_API_URL}api-web/v2/product-recommendation?page=${this.props.page}}`)
+            await Axios.get(`${process.env.REACT_APP_API_URL}api-web/v2/product-recommendation?page=${this.props.page}`)
                 .then(res => {
                     this.setState({
-                        products: [...this.state.products, ...res.data.data]
+                        products: [...this.state.products, ...res.data.data],
+                        filtered: [...this.state.products, ...res.data.data]
                     })
                 })
         } catch (error) {
             console.error(error)
+        }
+    }
+
+    onClickCategory = (value: string) => {
+        this.setState({
+            searchByCategory: value
+        }, () => this.onFilteredSearch("category"))
+    }
+
+    onFilteredSearch = (option: string) => {
+        let { dispatch } = this.props
+        let products = [...this.state.products]
+
+        switch (option) {
+            case "category":
+                products = products.filter(val => val.mainmenu_name === this.state.searchByCategory)
+                this.setState({ filtered: products }, () => dispatch(onChangeCategory(this.state.searchByCategory)))
+                break;
+            case "keyword":
+                products = products.filter(val => val.product_name.toLowerCase().includes(this.props.searchKeyword))
+                this.setState({ filtered: products })
+                break;
+
+            default:
+                break;
         }
     }
 
@@ -76,20 +107,32 @@ class Home extends Component<any, State> {
         this.getDataBanner()
     }
 
-    UNSAFE_componentWillReceiveProps = () => {
-        this.getDataProducts();
+    componentDidUpdate = (prevState: any) => {
+        let { page, searchKeyword } = this.props
+
+        if (prevState.page != page) {
+            this.getDataProducts();
+        }
+
+        if (prevState.searchKeyword != searchKeyword) {
+            this.onFilteredSearch("keyword")
+        }
     }
 
     render() {
-        let { categories, products, banners } = this.state
+        let { categories, filtered, banners, searchByCategory } = this.state
         return (
             <div style={{ marginTop: '90px' }}>
                 <Banners data={banners} />
-                <Categories data={categories} />
-                <Products data={products} />
+                <Categories choosen={searchByCategory} data={categories} onClick={this.onClickCategory} />
+                <Products data={filtered} />
             </div>
         )
     }
 }
 
-export default Home
+const mapStateToProps = (state: any) => {
+    return state
+}
+
+export default connect(mapStateToProps)(Home)
