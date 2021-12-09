@@ -1,5 +1,5 @@
 import { MDBBadge } from 'mdb-react-ui-kit'
-import React from 'react'
+import { memo } from 'react'
 import NumberFormat from 'react-number-format'
 import { ProductElement } from '../constants/Constants'
 import StringCutter from '../helper/StringCutter'
@@ -38,9 +38,9 @@ function Products(props: Product) {
                     )
                 })
             }
-            <h3 className="mb-5 pointer" hidden={props.data.length < 1 || props.searchKeyword != "" || props.searchCategory != "" ? false : true} onClick={() => props.onClickBack("")}><MDBBadge color="success" ><i className="bi bi-house-door-fill"></i> Kembali ke pencarian awal</MDBBadge></h3>
+            <h3 className="mb-5 pointer" hidden={props.data.length < 1 || (props.searchKeyword != "" && props.searchCategory != "") ? false : true} onClick={() => props.onClickBack("")}><MDBBadge color="success" ><i className="bi bi-house-door-fill"></i> Kembali ke pencarian awal</MDBBadge></h3>
         </div>
     )
 }
 
-export default Products
+export default memo(Products)

@@ -1,5 +1,5 @@
 import { MDBNavbar, MDBNavbarBrand } from 'mdb-react-ui-kit'
-import React, { PureComponent } from 'react'
+import { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { onChangeKeyword } from '../config/action/rootAction'
 

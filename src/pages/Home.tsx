@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { PureComponent } from 'react'
 import Axios from '../config/axios'
 import Categories from '../components/Categories'
 import Banners from '../components/Banners'
@@ -19,7 +19,7 @@ interface BannerElement {
     url_mobile: string
 }
 
-class Home extends Component<any, State> {
+class Home extends PureComponent<any, State> {
     constructor(props: any) {
         super(props)
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import { memo } from 'react'
 import { CategoryElement } from '../constants/Constants'
 
 interface Category {
@@ -32,4 +32,4 @@ function Categories(props: Category) {
     )
 }
 
-export default Categories
+export default memo(Categories)

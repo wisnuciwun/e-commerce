@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   MDBCarousel,
   MDBCarouselInner,
@@ -6,6 +5,7 @@ import {
   MDBCarouselElement,
   MDBCarouselCaption,
 } from 'mdb-react-ui-kit';
+import { memo } from 'react';
 
 interface Banner {
   data: [BannerElement]
@@ -15,7 +15,7 @@ interface BannerElement {
   url_mobile: string
 }
 
-export default function Banners(props: Banner) {
+function Banners(props: Banner) {
 
   return (
     <div style={{marginTop: '100px'}} className="d-flex justify-content-center mb-3 fade-in">
@@ -42,3 +42,5 @@ export default function Banners(props: Banner) {
     </div>
   );
 }
+
+export default memo(Banners)

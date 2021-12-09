@@ -31,7 +31,6 @@ code {
   width: 100%;
   position: fixed;
   top: 0;
-  z-index: 99;
   background-color: white;
 }
 
@@ -116,7 +115,7 @@ code {
 .floating-button{
   border-radius: 100%;
   position: fixed;
-  box-shadow: 1px 3px 7px #000;
-  right: 55px;
-  top: 200px;
+  box-shadow: 2px 3px 5px #848484;;
+  bottom: 8vh;
+  z-index: 10;
 }
